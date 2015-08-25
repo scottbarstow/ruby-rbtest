@@ -1,0 +1,9 @@
+h2 Forgot your password?
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email Address'
+  .form-actions.text-center
+    = f.button :submit, 'Send me reset password instructions', class: 'btn'
+= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+
