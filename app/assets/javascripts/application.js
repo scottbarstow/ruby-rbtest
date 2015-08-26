@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require react
+//= require react_ujs
 //= require bootstrap-sprockets
-//= require_tree .
+//= require react_bootstrap
+//= require axios
+//= require components
