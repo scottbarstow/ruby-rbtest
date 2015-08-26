@@ -16,5 +16,5 @@
 //= require react_ujs
 //= require bootstrap-sprockets
 //= require react_bootstrap
-//= require axios
+//= require axios.min
 //= require components

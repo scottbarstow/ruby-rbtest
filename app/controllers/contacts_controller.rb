@@ -7,4 +7,9 @@ class ContactsController < ApplicationController
       end
     end
   end
+
+  def create
+    contact = Contact.create(params[:contact])
+    render status: 201, json: contact
+  end
 end
