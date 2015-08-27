@@ -18,10 +18,7 @@ var CreateContact = React.createClass({
   },
 
   getInitialState: function(){
-    return {
-      first_name: '',
-      errors: {}
-    }
+    return {}
   },
 
   firstNameChange: function(e){
@@ -41,19 +38,18 @@ var CreateContact = React.createClass({
   },
 
   validationState: function(field) {
-    if (Object.keys(this.state.errors).length === 0) {
+    if (this.state.errors === undefined || Object.keys(this.state.errors).length === 0) {
       return '';
     }
     return field in this.state.errors ? 'error' : 'success'
   },
 
   validationMessage: function(field) {
-    if (this.state.errors.hasOwnProperty(field)){
+    if (this.state.errors && this.state.errors.hasOwnProperty(field)){
       return this.state.errors[field];
     } else {
       return '';
     }
-
   },
 
   render: function () {
@@ -62,42 +58,29 @@ var CreateContact = React.createClass({
         <div className="col-md-6 col-md-offset-3">
           <h2>Add Contact</h2>
           <form className="form-horizontal" onSubmit={this.create}>
-            <ReactBootstrap.Input
-              type="text"
+            <InputField
               label="First Name"
-              name="first_name"
               value={this.state.first_name}
-              help={this.validationMessage('first_name')}
-              hasFeedback
-              bsStyle={this.validationState('first_name')}
-              ref="input"
+              message={this.validationMessage('first_name')}
+              state={this.validationState('first_name')}
               onChange={this.firstNameChange} />
-            <ReactBootstrap.Input
-              type="text"
+            <InputField
               label="Last Name"
               value={this.state.last_name}
-              help={this.validationMessage('last_name')}
-              hasFeedback
-              bsStyle={this.validationState('last_name')}
-              ref="input"
+              message={this.validationMessage('last_name')}
+              state={this.validationState('last_name')}
               onChange={this.lastNameChange} />
-            <ReactBootstrap.Input
-              type="text"
+            <InputField
               label="Email Address"
               value={this.state.email}
-              help={this.validationMessage('email')}
-              hasFeedback
-              bsStyle={this.validationState('email')}
-              ref="input"
+              message={this.validationMessage('email')}
+              state={this.validationState('email')}
               onChange={this.emailChange} />
-            <ReactBootstrap.Input
-              type="text"
+            <InputField
               label="Phone"
               value={this.state.phone}
-              help={this.validationMessage('phone')}
-              hasFeedback
-              bsStyle={this.validationState('phone')}
-              ref="input"
+              message={this.validationMessage('phone')}
+              state={this.validationState('phone')}
               onChange={this.phoneChange} />
             <ReactBootstrap.ButtonInput type='submit' value='Add' />
           </form>
