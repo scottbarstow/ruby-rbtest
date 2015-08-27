@@ -1,10 +1,5 @@
 var Link = ReactRouter.Link;
 
-var headers = {
-  'Content-type': 'application/json',
-  'Accept': 'application/json'
-};
-
 var ListContacts = React.createClass({
 
   getInitialState: function() {
@@ -15,10 +10,17 @@ var ListContacts = React.createClass({
 
   componentDidMount: function() {
     var z = this;
-    axios.get('/contacts', {headers: headers})
-      .then(function(res){
-        z.setState({contacts: res.data})
-      });
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      url: '/contacts',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      success: function(data){
+        z.setState({contacts: data});
+      }
+    });
   },
 
   render: function () {

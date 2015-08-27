@@ -18,5 +18,4 @@
 //= require react_router_ujs
 //= require bootstrap-sprockets
 //= require react_bootstrap
-//= require axios.min
 //= require components

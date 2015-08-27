@@ -1,25 +1,39 @@
 var Navigation = ReactRouter.Navigation;
 
+var headers = {
+  'Content-type': 'application/json',
+  'Accept': 'application/json',
+  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+};
+
 var CreateContact = React.createClass({
   mixins: [Navigation],
 
   create: function(event) {
     event.preventDefault();
     var z = this;
-    axios.post('/contacts', {
-      contact: {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        phone: this.state.phone
-      }
-    }).then(function(){
+    $.ajax({
+      type: 'POST',
+      url: '/contacts',
+      data: {
+        contact: {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          email: this.state.email,
+          phone: this.state.phone
+        }
+      },
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      success: function(){
         z.setState({errors: {}});
         z.transitionTo('list-contacts');
-      })
-      .catch(function(res){
+      },
+      error: function(res){
         z.setState({errors: res.data.errors});
-      });
+      }
+    });
   },
 
   getInitialState: function(){

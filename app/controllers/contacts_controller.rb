@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     respond_to do |format|
@@ -10,6 +11,7 @@ class ContactsController < ApplicationController
   end
 
   def create
+    puts current_user
     contact = Contact.new(contact_params)
     if contact.save
       CheckContactWorker.perform_async contact, current_user
