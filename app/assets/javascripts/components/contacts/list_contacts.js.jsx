@@ -45,6 +45,9 @@ var ListContacts = React.createClass({
                       <td>{contact.last_name}</td>
                       <td>{contact.email}</td>
                       <td>{contact.phone}</td>
+                      <td>
+                        <Link to="show-contact" params={{id: contact.id}}>View</Link>
+                      </td>
                     </tr>
                   );
                 })

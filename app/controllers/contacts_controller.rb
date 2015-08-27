@@ -17,6 +17,15 @@ class ContactsController < ApplicationController
     end
   end
 
+  def show
+    contact = Contact.find(params[:id])
+    if contact
+      render :status => :ok, json: contact
+    else
+      render :status => :not_found
+    end
+  end
+
   private
 
   def contact_params
