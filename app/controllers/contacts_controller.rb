@@ -9,7 +9,17 @@ class ContactsController < ApplicationController
   end
 
   def create
-    contact = Contact.create(params[:contact])
-    render status: 201, json: contact
+    contact = Contact.new(contact_params)
+    if contact.save
+      render :status => :created, json: contact
+    else
+      render :status => :unprocessable_entity, json: {errors: contact.errors.as_json}
+    end
+  end
+
+  private
+
+  def contact_params
+    params.require(:contact).permit(:first_name, :last_name, :phone, :email)
   end
 end
