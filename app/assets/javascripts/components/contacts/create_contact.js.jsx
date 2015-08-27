@@ -1,11 +1,5 @@
 var Navigation = ReactRouter.Navigation;
 
-var headers = {
-  'Content-type': 'application/json',
-  'Accept': 'application/json',
-  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-};
-
 var CreateContact = React.createClass({
   mixins: [Navigation],
 
@@ -22,9 +16,6 @@ var CreateContact = React.createClass({
           email: this.state.email,
           phone: this.state.phone
         }
-      },
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
       },
       success: function(){
         z.setState({errors: {}});

@@ -12,10 +12,14 @@ var ShowContact = React.createClass({
   componentDidMount: function() {
     var z = this;
     var id = this.props.params.id;
-    axios.get('/contacts/' + id, {headers: headers})
-      .then(function(res){
-        z.setState({contact: res.data});
-      });
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      url: '/contacts/' + id,
+      success: function(data){
+        z.setState({contact: data});
+      }
+    });
   },
 
   render: function () {

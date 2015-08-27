@@ -12,11 +12,8 @@ var ListContacts = React.createClass({
     var z = this;
     $.ajax({
       type: 'GET',
-      dataType: "json",
+      dataType: 'json',
       url: '/contacts',
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-      },
       success: function(data){
         z.setState({contacts: data});
       }
