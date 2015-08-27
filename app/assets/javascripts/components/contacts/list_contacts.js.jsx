@@ -6,7 +6,9 @@ var headers = {
 var ListContacts = React.createClass({
 
   getInitialState: function() {
-    return {};
+    return {
+      contacts: []
+    };
   },
 
   componentDidMount: function() {
@@ -22,16 +24,30 @@ var ListContacts = React.createClass({
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
           <h2>Contacts</h2>
-          <Reactable.Table
-            className="table table-hover table-striped"
-            columns={[
-              {key: 'first_name', label: 'First Name'},
-              {key: 'last_name', label: 'Last Name'},
-              {key: 'email', label: 'Email'},
-              {key: 'phone', label: 'Phone'}
-            ]}
-            data={this.state.contacts}
-          />
+          <table className="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.contacts
+                .map(function(contact, i){
+                  return (
+                    <tr key={i}>
+                      <td>{contact.first_name}</td>
+                      <td>{contact.last_name}</td>
+                      <td>{contact.email}</td>
+                      <td>{contact.phone}</td>
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     )
