@@ -10,14 +10,4 @@ RSpec.describe Contact, type: :model do
     contact = FactoryGirl.build(:contacts, last_name: '')
     expect(contact).to_not be_valid
   end
-
-  it 'should require Email' do
-    contact = FactoryGirl.build(:contacts, email: '')
-    expect(contact).to_not be_valid
-  end
-
-  it 'should require Phone' do
-    contact = FactoryGirl.build(:contacts, phone: '')
-    expect(contact).to_not be_valid
-  end
 end

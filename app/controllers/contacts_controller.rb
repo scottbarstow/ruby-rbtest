@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+
   def index
     respond_to do |format|
       format.html
@@ -11,6 +12,7 @@ class ContactsController < ApplicationController
   def create
     contact = Contact.new(contact_params)
     if contact.save
+      CheckContactWorker.perform_async contact, current_user
       render :status => :created, json: contact
     else
       render :status => :unprocessable_entity, json: {errors: contact.errors.as_json}

@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'react-rails', '~> 1.0'
 gem 'react-bootstrap-rails'
 gem 'react-router-rails'
+gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 group :development, :test do
   gem 'byebug'

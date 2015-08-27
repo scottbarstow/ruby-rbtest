@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   }
   resources :contacts
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root to: 'contacts#index'
 end
