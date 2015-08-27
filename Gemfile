@@ -13,6 +13,7 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'react-rails', '~> 1.0'
 gem 'react-bootstrap-rails'
+gem 'react-router-rails'
 
 group :development, :test do
   gem 'byebug'

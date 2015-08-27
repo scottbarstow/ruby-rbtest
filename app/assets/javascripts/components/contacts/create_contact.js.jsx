@@ -1,4 +1,8 @@
+var Navigation = ReactRouter.Navigation;
+
 var CreateContact = React.createClass({
+  mixins: [Navigation],
+
   create: function(event) {
     event.preventDefault();
     var z = this;
@@ -11,6 +15,7 @@ var CreateContact = React.createClass({
       }
     }).then(function(){
         z.setState({errors: {}});
+        z.transitionTo('list-contacts');
       })
       .catch(function(res){
         z.setState({errors: res.data.errors});

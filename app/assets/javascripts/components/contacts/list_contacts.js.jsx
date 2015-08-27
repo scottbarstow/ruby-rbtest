@@ -1,3 +1,5 @@
+var Link = ReactRouter.Link;
+
 var headers = {
   'Content-type': 'application/json',
   'Accept': 'application/json'
@@ -31,6 +33,7 @@ var ListContacts = React.createClass({
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th />
               </tr>
             </thead>
             <tbody>
@@ -48,6 +51,7 @@ var ListContacts = React.createClass({
               }
             </tbody>
           </table>
+          <Link to="create-contact">Add</Link>
         </div>
       </div>
     )
