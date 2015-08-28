@@ -47,8 +47,8 @@ var UpdatePhone = React.createClass({
 
   render: function () {
     return (
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3">
+      <div className="row-fluid">
+        <div className="col-sm-6 col-sm-offset-3">
           <h2>{this.state.contact.first_name + ' ' + this.state.contact.last_name}</h2>
           <form className="form-horizontal" onSubmit={this.update}>
             <InputField
