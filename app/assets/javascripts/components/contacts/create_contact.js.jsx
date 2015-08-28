@@ -1,7 +1,7 @@
 var Navigation = ReactRouter.Navigation;
 
 var CreateContact = React.createClass({
-  mixins: [Navigation],
+  mixins: [Navigation, Validation],
 
   create: function(event) {
     event.preventDefault();
@@ -35,21 +35,6 @@ var CreateContact = React.createClass({
 
   lastNameChange: function(e){
     this.setState({last_name: e.target.value})
-  },
-
-  validationState: function(field) {
-    if (this.state.errors === undefined || Object.keys(this.state.errors).length === 0) {
-      return '';
-    }
-    return field in this.state.errors ? 'error' : 'success'
-  },
-
-  validationMessage: function(field) {
-    if (this.state.errors && this.state.errors.hasOwnProperty(field)){
-      return this.state.errors[field];
-    } else {
-      return '';
-    }
   },
 
   render: function () {
