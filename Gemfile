@@ -15,6 +15,7 @@ gem 'react-bootstrap-rails'
 gem 'react-router-rails'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'
