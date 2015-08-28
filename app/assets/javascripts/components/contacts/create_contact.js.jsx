@@ -39,9 +39,8 @@ var CreateContact = React.createClass({
 
   render: function () {
     return (
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h2>Add Contact</h2>
+      <div className="row-fluid">
+        <div className="col-sm-6 col-sm-offset-3">
           <form className="form-horizontal" onSubmit={this.create}>
             <InputField
               label="First Name"

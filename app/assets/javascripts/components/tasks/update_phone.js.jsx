@@ -26,15 +26,30 @@ var UpdatePhone = React.createClass({
     this.setState({phone: e.target.value})
   },
 
+  componentDidMount: function() {
+    var z = this;
+    var id = this.props.params.id;
+    $.ajax({
+      type: 'GET',
+      dataType: "json",
+      url: '/contacts/' + id,
+      success: function(data){
+        z.setState({contact: data});
+      }
+    });
+  },
+
   getInitialState: function(){
-    return {}
+    return {
+      contact: {}
+    }
   },
 
   render: function () {
     return (
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <h2>Add Contact</h2>
+          <h2>{this.state.contact.first_name + ' ' + this.state.contact.last_name}</h2>
           <form className="form-horizontal" onSubmit={this.update}>
             <InputField
               label="Phone"
