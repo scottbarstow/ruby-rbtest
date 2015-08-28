@@ -21,8 +21,8 @@ var CreateContact = React.createClass({
         z.setState({errors: {}});
         z.transitionTo('list-contacts');
       },
-      error: function(res){
-        z.setState({errors: res.data.errors});
+      error: function(xhr){
+        z.setState({errors: xhr.responseJSON.errors});
       }
     });
   },
@@ -37,14 +37,6 @@ var CreateContact = React.createClass({
 
   lastNameChange: function(e){
     this.setState({last_name: e.target.value})
-  },
-
-  emailChange: function(e){
-    this.setState({email: e.target.value})
-  },
-
-  phoneChange: function(e){
-    this.setState({phone: e.target.value})
   },
 
   validationState: function(field) {
@@ -80,18 +72,6 @@ var CreateContact = React.createClass({
               message={this.validationMessage('last_name')}
               state={this.validationState('last_name')}
               onChange={this.lastNameChange} />
-            <InputField
-              label="Email Address"
-              value={this.state.email}
-              message={this.validationMessage('email')}
-              state={this.validationState('email')}
-              onChange={this.emailChange} />
-            <InputField
-              label="Phone"
-              value={this.state.phone}
-              message={this.validationMessage('phone')}
-              state={this.validationState('phone')}
-              onChange={this.phoneChange} />
             <ReactBootstrap.ButtonInput type='submit' value='Add' />
           </form>
         </div>
