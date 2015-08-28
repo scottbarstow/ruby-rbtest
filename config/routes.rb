@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :contacts
+  resources :tasks
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  root to: 'contacts#index'
+  root to: 'home#index'
 end

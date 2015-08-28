@@ -10,7 +10,9 @@ nav.navbar.navbar-default.navbar-fixed-top
     .collapse.navbar-collapse
       ul.nav.navbar-nav#main-nav
         li
-          = link_to 'Contacts', root_path
+          = link_to 'Contacts', '#/'
+        li
+          = link_to 'Tasks', '#/tasks'
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li

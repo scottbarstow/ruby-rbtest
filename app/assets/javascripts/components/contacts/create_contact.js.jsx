@@ -12,9 +12,7 @@ var CreateContact = React.createClass({
       data: {
         contact: {
           first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          email: this.state.email,
-          phone: this.state.phone
+          last_name: this.state.last_name
         }
       },
       success: function(){
@@ -72,7 +70,7 @@ var CreateContact = React.createClass({
               message={this.validationMessage('last_name')}
               state={this.validationState('last_name')}
               onChange={this.lastNameChange} />
-            <ReactBootstrap.ButtonInput type='submit' value='Add' />
+            <ReactBootstrap.ButtonInput type='submit' value='Create Contact' />
           </form>
         </div>
       </div>
