@@ -23,7 +23,7 @@ var ListTasks = React.createClass({
     return (
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
-          <h2>Contacts</h2>
+          <h2>Tasks</h2>
           <table className="table table-hover table-striped">
             <thead>
             <tr>
