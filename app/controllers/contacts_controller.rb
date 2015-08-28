@@ -11,10 +11,10 @@ class ContactsController < ApplicationController
   end
 
   def create
-    puts current_user
     contact = Contact.new(contact_params)
     if contact.save
-      CheckContactWorker.perform_async contact, current_user
+      CheckContactWorker.perform_async 'Enter Phone Number', contact.id, current_user.id
+      CheckContactWorker.perform_async 'Enter Email', contact.id, current_user.id
       render :status => :created, json: contact
     else
       render :status => :unprocessable_entity, json: {errors: contact.errors.as_json}
@@ -33,6 +33,6 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :phone, :email)
+    params.require(:contact).permit(:first_name, :last_name)
   end
 end

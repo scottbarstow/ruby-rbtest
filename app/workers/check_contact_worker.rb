@@ -1,13 +1,7 @@
 class CheckContactWorker
   include Sidekiq::Worker
 
-  def perform(contact, user)
-    puts 'PERFORM'
-    if contact.email.nil?
-      Task.create(user: user, contact: contact, description: 'Enter Email')
-    end
-    if contact.phone.nil?
-      Task.create(user: user, contact: contact, description: 'Enter Phone Number')
-    end
+  def perform(description, contact_id, user_id)
+    Task.create(user_id: user_id, contact_id: contact_id, description: description)
   end
 end
