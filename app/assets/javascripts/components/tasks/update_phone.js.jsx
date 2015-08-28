@@ -1,7 +1,7 @@
 var Navigation = ReactRouter.Navigation;
 
 var UpdatePhone = React.createClass({
-  mixins: [Navigation, State, Validation],
+  mixins: [Navigation, State],
 
   update: function(event) {
     event.preventDefault();
@@ -17,17 +17,17 @@ var UpdatePhone = React.createClass({
         }
       },
       success: function(){
-        z.setState({errors: {}});
         z.transitionTo('list-tasks');
-      },
-      error: function(xhr){
-        z.setState({errors: xhr.responseJSON.errors});
       }
     });
   },
 
   phoneChange: function(e){
     this.setState({phone: e.target.value})
+  },
+
+  getInitialState: function(){
+    return {}
   },
 
   render: function () {
@@ -39,8 +39,6 @@ var UpdatePhone = React.createClass({
             <InputField
               label="Phone"
               value={this.state.phone}
-              message={this.validationMessage('phone')}
-              state={this.validationState('phone')}
               onChange={this.phoneChange} />
             <ReactBootstrap.ButtonInput type='submit' />
           </form>

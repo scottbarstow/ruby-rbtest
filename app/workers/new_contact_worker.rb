@@ -1,4 +1,4 @@
-class CheckContactWorker
+class NewContactWorker
   include Sidekiq::Worker
 
   def perform(description, contact_id, user_id)

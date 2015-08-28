@@ -9,8 +9,8 @@ class ContactsController < ApplicationController
     contact_params = params.require(:contact).permit(:first_name, :last_name)
     contact = Contact.new(contact_params)
     if contact.save
-      CheckContactWorker.perform_async 'Enter Phone Number', contact.id, current_user.id
-      CheckContactWorker.perform_async 'Enter Email', contact.id, current_user.id
+      NewContactWorker.perform_async 'Enter Phone Number', contact.id, current_user.id
+      NewContactWorker.perform_async 'Enter Email', contact.id, current_user.id
       render :status => :created, json: contact
     else
       render :status => :unprocessable_entity, json: {errors: contact.errors.as_json}
@@ -20,11 +20,11 @@ class ContactsController < ApplicationController
 
   def update
     contact_params = params.require(:contact).permit(:phone, :email)
-    contact = Contact.find(params[:id])
-    if contact.update_attributes(contact_params)
-      render :status => :ok, json: contact
+    if contact_params[:phone].present?
+      UpdatedPhoneWorker.perform_async(params[:id], contact_params[:phone]);
+      render :status => :ok, json: {}
     else
-      render :status => :unprocessable_entity, json: {errors: contact.errors.as_json}
+      render :status => :unprocessable_entity, json: {}
     end
   end
 

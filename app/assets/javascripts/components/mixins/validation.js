@@ -12,9 +12,5 @@ var Validation = {
     } else {
       return '';
     }
-  },
-
-  getInitialState: function(){
-    return {}
   }
 };
