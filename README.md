@@ -9,8 +9,7 @@
 3. `rake db:migrate`
 
 ## Running
-The system requires to start 2 processes (from the project folder)
-1. rails s
-2. sidekiq
+1. `rails s`
+2. `sidekiq`
 
 
